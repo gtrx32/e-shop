@@ -10,8 +10,11 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                 <ul>
                     @foreach ($products as $product)
-                        <li class="border-b py-2">
-                            {{ $product->name }} - {{ $product->price }} руб.
+                        <li class="border-b flex justify-between items-center">
+                            <a href="{{ route('products.show', $product->id) }}" class="flex-1  py-4">
+                                {{ $product->name }}
+                            </a>
+                            <span class="ml-4">{{ $product->price }} руб.</span>
                         </li>
                     @endforeach
                 </ul>
