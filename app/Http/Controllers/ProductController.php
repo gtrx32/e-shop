@@ -29,9 +29,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([]);
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'price' => 'required|numeric|between:0,99999999.99',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $data['image'] = $path;
+        }
 
         Product::create($data);
+
+        return redirect()->route('products.index')->with('success', 'Товар успешно добавлен.');
     }
 
     /**
@@ -63,6 +75,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Товар успешно удален.');
     }
 }
