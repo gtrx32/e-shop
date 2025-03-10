@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -32,7 +31,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request, ProductService $productService): RedirectResponse
+    public function store(ProductRequest $request, ProductService $productService): RedirectResponse
     {
         $data = $request->validated();
 
@@ -54,21 +53,25 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('products.edit');
+        return view('products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product): RedirectResponse
+    public function update(ProductRequest $request, ProductService $productService, Product $product): RedirectResponse
     {
-        return redirect()->route('products.index'); // ->with ?
+        $data = $request->validated();
+
+        $productService->updateProduct($product, $data, $request);
+
+        return redirect()->route('products.index')->with('success', 'Товар успешно обновлен.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product, ProductService $productService): RedirectResponse
+    public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
 

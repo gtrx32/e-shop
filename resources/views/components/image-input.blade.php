@@ -1,4 +1,4 @@
-@props(['disabled' => false, 'label' => 'Выберите файл'])
+@props(['disabled' => false, 'label' => 'Выберите файл', 'value'])
 
 <div class="relative">
     <input type="file" id="file-input" @disabled($disabled) {{ $attributes->merge(['class' => 'hidden']) }}
@@ -8,9 +8,9 @@
         {{ $label }}
     </x-input-label>
 
-    <div id="image-preview" class="hidden">
+    <div id="image" class="">
         <div class="h-48 mt-4 relative inline-block">
-            <img id="preview-img" src="" alt="Preview"
+            <img id="preview-img" src="{{ asset('storage/' . $value) }}" alt="Preview"
                 class="h-full w-auto object-cover rounded-md shadow-md" />
             <button type="button" onclick="removeImage()"
                 class="absolute top-2 right-2 text-white bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-1">
@@ -26,7 +26,7 @@
 <script>
     function previewImage(event) {
         const file = event.target.files[0];
-        const preview = document.getElementById('image-preview');
+        const preview = document.getElementById('image');
         const previewImg = document.getElementById('preview-img');
 
         if (file) {
@@ -44,7 +44,7 @@
     }
 
     function removeImage() {
-        const preview = document.getElementById('image-preview');
+        const preview = document.getElementById('image');
         const fileInput = document.getElementById('file-input');
         const previewImg = document.getElementById('preview-img');
 
