@@ -39,7 +39,7 @@
                                 label="Выберите файл" value="{{ $product->image }}" />
                         </div>
                         <div class="flex justify-end gap-4">
-                            <x-secondary-button-link href="{{ route('products.index') }}">
+                            <x-secondary-button-link href="{{ url()->previous() }}">
                                 Отмена
                             </x-secondary-button-link>
                             <x-primary-button type="submit">

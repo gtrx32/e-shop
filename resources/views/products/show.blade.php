@@ -7,10 +7,24 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white shadow-lg sm:rounded-lg border border-gray-200 p-8">
+                @if (session('success') || session('error'))
+                    <div class="mb-8">
+                        @if (session('success'))
+                            <div class="p-4 mb-4 text-green-800 bg-green-100 rounded-lg">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="p-4 mb-4 text-red-800 bg-red-100 rounded-lg">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                    </div>
+                @endif
                 <div class="flex flex-col md:flex-row gap-6">
                     <div class="w-full md:w-1/3">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                            class="w-full h-64 object-cover rounded-lg shadow-md">
+                        <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
+                            alt="{{ $product->name }}" class="w-full h-64 object-cover rounded-lg shadow-md">
                     </div>
                     <div class="flex-1 flex flex-col justify-between">
                         <div>

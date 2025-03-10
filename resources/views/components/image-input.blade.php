@@ -8,10 +8,10 @@
         Выберите файл
     </x-input-label>
     <div id="image-wrapper" class="{{ $value ? '' : 'hidden' }}">
-        <div class="h-48 mt-4 relative inline-block">
+        <div class="h-48 w-96 mt-4 relative inline-block">
             <img id="preview-image"
                 src="{{ $value ? asset('storage/' . $value) : asset('https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
-                alt="Preview" class="h-full w-auto object-cover rounded-md shadow-md" />
+                alt="Preview" class="h-full w-full object-cover rounded-md shadow-md" />
             <button type="button" onclick="removeImage('{{ $id }}')"
                 class="absolute top-2 right-2 text-white bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"

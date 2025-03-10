@@ -53,6 +53,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
+        session(['previous_url' => url()->previous()]);
+
         return view('products.edit', compact('product'));
     }
 
@@ -65,7 +67,9 @@ class ProductController extends Controller
 
         $productService->updateProduct($product, $data, $request);
 
-        return redirect()->route('products.index')->with('success', 'Товар успешно обновлен.');
+        $previousUrl = session('previous_url', route('products.index'));
+
+        return redirect($previousUrl)->with('success', 'Товар успешно обновлен.');
     }
 
     /**

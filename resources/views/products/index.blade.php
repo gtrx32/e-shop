@@ -32,9 +32,10 @@
                             class="relative flex justify-between items-center gap-6 py-4 border-b border-gray-200 hover:bg-gray-100 transition duration-200">
                             <a class="absolute w-full h-full top-0 left-0"
                                 href="{{ route('products.show', $product->id) }}"></a>
-                            <div class="w-16 h-16 flex-shrink-0">
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover rounded-lg shadow-md">
+                            <div class="w-24 h-16 flex-shrink-0">
+                                <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
+                                    alt="{{ $product->name }}"
+                                    class="w-full h-full object-cover rounded-lg shadow-md" />
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-lg font-semibold text-gray-900">{{ $product->name }}</h3>
