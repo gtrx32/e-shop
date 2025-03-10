@@ -25,9 +25,8 @@
                         </div>
                         <div>
                             <x-input-label for="description" value="Описание" />
-                            <x-textarea-input id="description" class="block mt-1 w-full" name="description">
-                                {{ old('description', $product->description) }}
-                            </x-textarea-input>
+                            <x-textarea-input id="description" class="block mt-1 w-full" name="description"
+                                value="{{ old('description', $product->description) }}" />
                         </div>
                         <div>
                             <x-input-label for="price" value="Цена" />

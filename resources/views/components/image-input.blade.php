@@ -21,6 +21,7 @@
             </button>
         </div>
     </div>
+    <input type="checkbox" id="delete-old-image" name="delete-old-image" class="hidden" />
 </div>
 
 <script>
@@ -28,6 +29,7 @@
         const file = event.target.files[0];
         const preview = document.getElementById('image-wrapper');
         const previewImg = document.getElementById('preview-image');
+        const deleteCheckbox = document.getElementById('delete-old-image');
 
         if (file) {
             const reader = new FileReader();
@@ -35,6 +37,7 @@
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
                 preview.classList.remove('hidden');
+                deleteCheckbox.checked = true;
             };
 
             reader.readAsDataURL(file);
@@ -47,10 +50,11 @@
         const preview = document.getElementById('image-wrapper');
         const fileInput = document.getElementById(id);
         const previewImg = document.getElementById('preview-image');
+        const deleteCheckbox = document.getElementById('delete-old-image');
 
         previewImg.src = '';
         preview.classList.add('hidden');
         fileInput.value = '';
-        console.log(fileInput.value);
+        deleteCheckbox.checked = true;
     }
 </script>

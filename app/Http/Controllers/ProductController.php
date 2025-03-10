@@ -71,9 +71,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product): RedirectResponse
+    public function destroy(Product $product, ProductService $productService): RedirectResponse
     {
-        $product->delete();
+        $productService->deleteProduct($product);
 
         return redirect()->route('products.index')->with('success', 'Товар успешно удален.');
     }

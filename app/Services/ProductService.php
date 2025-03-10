@@ -19,15 +19,23 @@ class ProductService
 
     public function updateProduct(Product $product, array $data, ProductRequest $request): void
     {
-        if ($request->hasFile('image')) {
-            if ($product->image) {
-                $this->deleteOldImage($product->image);
-            }
+        if ($request->has('delete-old-image') && $request->input('delete-old-image') === 'on') {
+            $this->deleteImageFromDisk($product);
+            $data['image'] = null;
+        }
 
+        if ($request->hasFile('image')) {
             $data['image'] = $this->storeImage($request);
         }
 
         $product->update($data);
+    }
+
+    public function deleteProduct(Product $product)
+    {
+        $this->deleteImageFromDisk($product);
+
+        $product->delete();
     }
 
     private function storeImage(ProductRequest $request): string
@@ -35,10 +43,12 @@ class ProductService
         return $request->file('image')->store('images', 'public');
     }
 
-    private function deleteOldImage(string $imagePath): void
+    private function deleteImageFromDisk(Product $product): void
     {
-        if (Storage::disk('public')->exists($imagePath)) {
-            Storage::disk('public')->delete($imagePath);
+        if ($product->image) {
+            if (Storage::disk('public')->exists($product->image)) {
+                Storage::disk('public')->delete($product->image);
+            }
         }
     }
 }
