@@ -1,18 +1,18 @@
-@props(['disabled' => false, 'label' => 'Выберите файл', 'value'])
+@props(['value', 'id'])
 
 <div class="relative">
-    <input type="file" id="file-input" @disabled($disabled) {{ $attributes->merge(['class' => 'hidden']) }}
-        onchange="previewImage(event)">
-    <x-input-label for="file-input"
-        class="mt-1 inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 cursor-pointer {{ $disabled ? 'cursor-not-allowed opacity-50' : '' }}">
-        {{ $label }}
+    <input type="file" id="{{ $id }}" name="{{ $id }}"
+        {{ $attributes->merge(['class' => 'hidden']) }} onchange="previewImage(event)">
+    <x-input-label for="{{ $id }}"
+        class="mt-1 inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 cursor-pointer">
+        Выберите файл
     </x-input-label>
-
-    <div id="image" class="">
+    <div id="image-wrapper" class="{{ $value ? '' : 'hidden' }}">
         <div class="h-48 mt-4 relative inline-block">
-            <img id="preview-img" src="{{ asset('storage/' . $value) }}" alt="Preview"
-                class="h-full w-auto object-cover rounded-md shadow-md" />
-            <button type="button" onclick="removeImage()"
+            <img id="preview-image"
+                src="{{ $value ? asset('storage/' . $value) : asset('https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
+                alt="Preview" class="h-full w-auto object-cover rounded-md shadow-md" />
+            <button type="button" onclick="removeImage('{{ $id }}')"
                 class="absolute top-2 right-2 text-white bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     class="w-4 h-4">
@@ -26,8 +26,8 @@
 <script>
     function previewImage(event) {
         const file = event.target.files[0];
-        const preview = document.getElementById('image');
-        const previewImg = document.getElementById('preview-img');
+        const preview = document.getElementById('image-wrapper');
+        const previewImg = document.getElementById('preview-image');
 
         if (file) {
             const reader = new FileReader();
@@ -43,13 +43,14 @@
         }
     }
 
-    function removeImage() {
-        const preview = document.getElementById('image');
-        const fileInput = document.getElementById('file-input');
-        const previewImg = document.getElementById('preview-img');
+    function removeImage(id) {
+        const preview = document.getElementById('image-wrapper');
+        const fileInput = document.getElementById(id);
+        const previewImg = document.getElementById('preview-image');
 
         previewImg.src = '';
         preview.classList.add('hidden');
         fileInput.value = '';
+        console.log(fileInput.value);
     }
 </script>

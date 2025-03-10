@@ -37,7 +37,7 @@
                         <div>
                             <x-input-label for="image" value="Изображение" />
                             <x-image-input id="image" type="file" name="image" accept=".jpg,.jpeg,.png,.webp"
-                                label="Выберите файл" value="{{ old('image', $product->image) }}" />
+                                label="Выберите файл" value="{{ $product->image }}" />
                         </div>
                         <div class="flex justify-end gap-4">
                             <x-secondary-button-link href="{{ route('products.index') }}">
