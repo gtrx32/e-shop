@@ -1,4 +1,4 @@
-@props(['value', 'id'])
+@props(['value' => '', 'id'])
 
 <div class="relative">
     <input type="file" id="{{ $id }}" name="{{ $id }}"
