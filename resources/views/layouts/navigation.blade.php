@@ -5,15 +5,15 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('products.index') }}">
+                    <a href="{{ route('main') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                        {{ __('Products') }}
-                    </x-nav-link>
+                    {{-- <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                        {{ __('Товары') }}
+                    </x-nav-link> --}}
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                             @auth
                                 <div>{{ Auth::user()->name }}</div>
                             @else
-                                <div>{{ __('Not authorized') }}</div>
+                                <div>{{ __('Гость') }}</div>
                             @endauth
 
                             <div class="ms-1">
@@ -43,7 +43,10 @@
                     <x-slot name="content">
                         @auth
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('Профиль') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('products.index')">
+                                {{ __('Список товаров') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -53,15 +56,15 @@
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Выход') }}
                                 </x-dropdown-link>
                             </form>
                         @else
                             <x-dropdown-link :href="route('login')">
-                                {{ __('Login') }}
+                                {{ __('Авторизация') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('register')">
-                                {{ __('Register') }}
+                                {{ __('Регистрация') }}
                             </x-dropdown-link>
                         @endauth
                     </x-slot>
@@ -88,7 +91,7 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                {{ __('Products') }}
+                {{ __('Список товаров') }}
             </x-responsive-nav-link>
         </div>
 
@@ -99,14 +102,14 @@
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 @else
-                    <div class="font-medium text-base text-gray-800">{{ __('Not authorized') }}</div>
+                    <div class="font-medium text-base text-gray-800">{{ __('Гость') }}</div>
                 @endauth
             </div>
 
             <div class="mt-3 space-y-1">
                 @auth
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Profile') }}
+                        {{ __('Профиль') }}
                     </x-responsive-nav-link>
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
@@ -115,15 +118,15 @@
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Выход') }}
                         </x-responsive-nav-link>
                     </form>
                 @else
                     <x-responsive-nav-link :href="route('login')">
-                        {{ __('Login') }}
+                        {{ __('Авторизация') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('register')">
-                        {{ __('Register') }}
+                        {{ __('Регистрация') }}
                     </x-responsive-nav-link>
                 @endauth
             </div>
