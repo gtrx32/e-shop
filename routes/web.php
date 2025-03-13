@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return '123';
+    return view('pages.main');
 })->name('main');
 
 Route::middleware('auth')->group(function () {
