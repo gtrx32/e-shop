@@ -4,6 +4,7 @@
             {{ __('Каталог') }}
         </h2>
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white shadow-lg sm:rounded-lg border border-gray-200 p-8">
@@ -21,37 +22,39 @@
                         @endif
                     </div>
                 @endif
+
                 <div class="mb-8">
-                    <x-primary-button-link href="{{ route('products.create') }}" class="">
+                    <x-primary-button-link href="{{ route('products.create') }}">
                         Добавить товар
                     </x-primary-button-link>
                 </div>
-                <div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($products as $product)
-                        <div
-                            class="relative flex justify-between items-center gap-6 py-4 border-b border-gray-200 hover:bg-gray-100 transition duration-200">
-                            <a class="absolute w-full h-full top-0 left-0"
-                                href="{{ route('products.show', $product->id) }}"></a>
-                            <div class="w-24 h-16 flex-shrink-0">
-                                <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
-                                    alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover rounded-lg shadow-md" />
-                            </div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-gray-900">{{ $product->name }}</h3>
-                                <p class="text-sm text-gray-600 mt-1">{{ $product->description }}</p>
-                            </div>
-                            <div class="text-xl text-gray-900">
-                                {{ number_format($product->price, 2) }} ₽
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <x-secondary-button-link href="{{ route('products.edit', $product) }}" class="z-10">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <a href="{{ route('products.show', $product->id) }}" class="block relative group">
+                                <div class="relative h-56 w-full">
+                                    <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
+                                        alt="{{ $product->name }}"
+                                        class="w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">{{ $product->name }}</h3>
+                                    <p class="text-sm text-gray-600 mt-1">{{ $product->description }}</p>
+                                    <div class="mt-4 flex justify-between items-center">
+                                        <span class="text-xl text-gray-900">{{ number_format($product->price, 2) }}
+                                            ₽</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="p-4 flex justify-between items-center border-t border-gray-200">
+                                <x-secondary-button-link href="{{ route('products.edit', $product) }}" class="text-sm">
                                     Изменить
                                 </x-secondary-button-link>
-                                <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <x-danger-button type="submit" class="z-10 relative">
+                                    <x-danger-button type="submit" class="text-sm">
                                         Удалить
                                     </x-danger-button>
                                 </form>
