@@ -33,18 +33,20 @@
                                 {{ number_format($product->price, 2) }} ₽
                             </div>
                         </div>
-                        <div class="mt-6 flex gap-4">
-                            <x-primary-button-link href="{{ route('products.edit', $product) }}">
-                                Изменить
-                            </x-primary-button-link>
-                            <form action="{{ route('products.destroy', $product) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <x-danger-button type="submit">
-                                    Удалить
-                                </x-danger-button>
-                            </form>
-                        </div>
+                        @can('admin-access')
+                            <div class="mt-6 flex gap-4">
+                                <x-primary-button-link href="{{ route('products.edit', $product) }}">
+                                    Изменить
+                                </x-primary-button-link>
+                                <form action="{{ route('products.destroy', $product) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <x-danger-button type="submit">
+                                        Удалить
+                                    </x-danger-button>
+                                </form>
+                            </div>
+                        @endcan
                     </div>
                 </div>
                 <div class="mt-8">

@@ -23,11 +23,13 @@
                     </div>
                 @endif
 
-                <div class="mb-8">
-                    <x-primary-button-link href="{{ route('products.create') }}">
-                        Добавить товар
-                    </x-primary-button-link>
-                </div>
+                @can('admin-accesss')
+                    <div class="mb-8">
+                        <x-primary-button-link href="{{ route('products.create') }}">
+                            Добавить товар
+                        </x-primary-button-link>
+                    </div>
+                @endcan
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($products as $product)
@@ -47,18 +49,20 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="p-4 flex justify-between items-center border-t border-gray-200">
-                                <x-secondary-button-link href="{{ route('products.edit', $product) }}" class="text-sm">
-                                    Изменить
-                                </x-secondary-button-link>
-                                <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <x-danger-button type="submit" class="text-sm">
-                                        Удалить
-                                    </x-danger-button>
-                                </form>
-                            </div>
+                            @can('admin-access')
+                                <div class="p-4 flex justify-between items-center border-t border-gray-200">
+                                    <x-secondary-button-link href="{{ route('products.edit', $product) }}" class="text-sm">
+                                        Изменить
+                                    </x-secondary-button-link>
+                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-danger-button type="submit" class="text-sm">
+                                            Удалить
+                                        </x-danger-button>
+                                    </form>
+                                </div>
+                            @endcan
                         </div>
                     @endforeach
                 </div>
