@@ -23,7 +23,7 @@
                     </div>
                 @endif
 
-                @can('admin-accesss')
+                @can('admin-access')
                     <div class="mb-8">
                         <x-primary-button-link href="{{ route('products.create') }}">
                             Добавить товар
