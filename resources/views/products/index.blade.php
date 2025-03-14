@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Каталог') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="bg-white shadow-lg sm:rounded-lg border border-gray-200 p-8">
+            <div class="p-8 bg-white shadow sm:rounded-lg">
                 @if (session('success') || session('error'))
                     <div class="mb-8">
                         @if (session('success'))
@@ -33,24 +33,27 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($products as $product)
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                            <a href="{{ route('products.show', $product->id) }}" class="block relative group">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+                            <a href="{{ route('products.show', $product->id) }}" class="block relative group flex-grow">
                                 <div class="relative h-56 w-full">
                                     <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
                                         alt="{{ $product->name }}"
                                         class="w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300">
                                 </div>
-                                <div class="p-4">
+                                <div class="p-4 flex-grow">
                                     <h3 class="text-lg font-semibold text-gray-900">{{ $product->name }}</h3>
-                                    <p class="text-sm text-gray-600 mt-1">{{ $product->description }}</p>
+                                    <p class="text-sm text-gray-600 mt-1 line-clamp-3">
+                                        {{ $product->description }}
+                                    </p>
                                     <div class="mt-4 flex justify-between items-center">
-                                        <span class="text-xl text-gray-900">{{ number_format($product->price, 2) }}
-                                            ₽</span>
+                                        <span class="text-xl text-gray-900">
+                                            {{ number_format($product->price, 2) }} ₽
+                                        </span>
                                     </div>
                                 </div>
                             </a>
                             @can('admin-access')
-                                <div class="p-4 flex justify-between items-center border-t border-gray-200">
+                                <div class="p-4 flex justify-between items-center border-t border-gray-200 shrink-0">
                                     <x-secondary-button-link href="{{ route('products.edit', $product) }}" class="text-sm">
                                         Изменить
                                     </x-secondary-button-link>

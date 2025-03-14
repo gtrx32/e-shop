@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Редактирование товара') }}
         </h2>
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="bg-white shadow-lg sm:rounded-lg border border-gray-200 p-8">
+            <div class="p-8 bg-white shadow sm:rounded-lg">
                 @if ($errors->any())
                     <div class="p-4 mb-4 text-red-800 bg-red-100 rounded-lg">
                         @foreach ($errors->all() as $message)
