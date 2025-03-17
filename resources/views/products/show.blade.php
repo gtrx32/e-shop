@@ -32,7 +32,7 @@
                             <div class="text-2xl font-semibold text-gray-900">
                                 {{ number_format($product->price, 2) }} ₽
                             </div>
-                            <form action="" method="POST">
+                            <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                 @csrf
                                 <x-primary-button type="submit" class="px-6 py-2 text-base">
                                     В корзину

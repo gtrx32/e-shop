@@ -52,7 +52,7 @@
                                         <span class="text-xl text-gray-900">
                                             {{ number_format($product->price, 2) }} ₽
                                         </span>
-                                        <form action="" method="POST">
+                                        <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                             @csrf
                                             <x-primary-button type="submit" class="text-sm">
                                                 В корзину
