@@ -30,7 +30,7 @@
                 @endcan
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($products as $product)
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full relative">
                             <a href="{{ route('products.show', $product->id) }}"
                                 class="relative group flex-grow flex flex-col h-full">
                                 <div class="relative h-56 w-full">
@@ -74,35 +74,60 @@
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <x-danger-button type="submit">
-                                                Удалить
-                                            </x-danger-button>
+                                            <x-danger-button type="submit">Удалить</x-danger-button>
                                         </form>
                                     </div>
                                 @else
                                     <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                         @csrf
-                                        <x-primary-button type="submit" class="text-sm">
-                                            В корзину
-                                        </x-primary-button>
+                                        <x-primary-button type="submit" class="text-sm">В корзину</x-primary-button>
                                     </form>
                                 @endif
                             </div>
                             @can('admin-access')
-                                <div class="p-6 flex justify-between items-center border-t border-gray-200 shrink-0">
-                                    <x-secondary-button-link href="{{ route('products.edit', $product) }}" class="text-sm">
-                                        Изменить
-                                    </x-secondary-button-link>
-                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <x-danger-button type="submit" class="text-sm">
-                                            Удалить
-                                        </x-danger-button>
-                                    </form>
+                                <div class="absolute top-2 right-2">
+                                    <button id="product-actions-toggle-{{ $product->id }}"
+                                        class="absolute top-1 right-1 text-xl bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-500 hover:text-white transition-all duration-200">
+                                        ⋮
+                                    </button>
+                                    <div id="product-actions-{{ $product->id }}"
+                                        class="product-actions-menu hidden absolute top-8 right-0 bg-white shadow-md p-2 rounded-lg">
+                                        <x-secondary-button-link href="{{ route('products.edit', $product) }}"
+                                            class="text-sm block mb-2 w-full text-center">
+                                            Изменить
+                                        </x-secondary-button-link>
+                                        <form action="{{ route('products.destroy', $product) }}" method="POST"
+                                            class="inline w-full">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-danger-button type="submit"
+                                                class="text-sm w-full !block text-center">Удалить</x-danger-button>
+                                        </form>
+                                    </div>
                                 </div>
                             @endcan
                         </div>
+                        <script>
+                            document.getElementById('product-actions-toggle-{{ $product->id }}').addEventListener('click', function(event) {
+                                var actions = document.getElementById('product-actions-{{ $product->id }}');
+                                if (actions.classList.contains('hidden')) {
+                                    document.querySelectorAll('.product-actions-menu').forEach(function(menu) {
+                                        menu.classList.add('hidden');
+                                    });
+                                    actions.classList.remove('hidden');
+                                } else {
+                                    actions.classList.add('hidden');
+                                }
+                                event.stopPropagation();
+                            });
+                            document.addEventListener('click', function(event) {
+                                document.querySelectorAll('.product-actions-menu').forEach(function(menu) {
+                                    if (!menu.contains(event.target) && !menu.previousElementSibling.contains(event.target)) {
+                                        menu.classList.add('hidden');
+                                    }
+                                });
+                            });
+                        </script>
                     @endforeach
                 </div>
             </div>
