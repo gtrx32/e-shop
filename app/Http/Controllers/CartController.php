@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    public function index()
+    {
+        $cartItems = auth()->user()->cartItems()->with('product')->get();
+
+        return view('pages.cart', compact('cartItems'));
+    }
+
     public function add(Request $request, $productId)
     {
         $cartItem = CartItem::firstOrCreate(
@@ -17,5 +24,12 @@ class CartController extends Controller
         $cartItem->increment('quantity');
 
         return back()->with('success', 'Товар добавлен в корзину.');
+    }
+
+    public function remove(CartItem $cartItem)
+    {
+        $cartItem->delete();
+
+        return back()->with('success', 'Товар удалён из корзины.');
     }
 }

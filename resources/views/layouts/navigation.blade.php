@@ -45,6 +45,9 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Профиль') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('cart.index')">
+                                {{ __('Корзина') }}
+                            </x-dropdown-link>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -107,6 +110,10 @@
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Профиль') }}
                     </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('cart.index')">
+                        {{ __('Корзина') }}
+                    </x-responsive-nav-link>
+
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
