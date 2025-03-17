@@ -38,20 +38,18 @@
                                         alt="{{ $product->name }}"
                                         class="w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300">
                                 </div>
-                                <div class="p-6 flex-grow flex flex-col gap-4">
-                                    <div class="flex justify-between items-start">
-                                        <h3 class="text-lg font-semibold text-gray-900 line-clamp-1">
-                                            {{ $product->name }}
-                                        </h3>
-                                        <span class="text-xl text-gray-900">
-                                            {{ number_format($product->price, 2) }} ₽
-                                        </span>
-                                    </div>
+                                <div class="p-6 flex-grow flex flex-col gap-4 justify-between">
+                                    <h3 class="text-lg font-semibold text-gray-900 line-clamp-1">
+                                        {{ $product->name }}
+                                    </h3>
                                     @if ($product->description)
                                         <p class="text-sm text-gray-600 line-clamp-3 flex-grow">
                                             {{ $product->description }}
                                         </p>
                                     @endif
+                                    <div class="text-xl text-gray-900">
+                                        {{ number_format($product->price, 2) }} ₽
+                                    </div>
                                 </div>
                             </a>
                             <div class="p-6 pt-0">
