@@ -45,10 +45,12 @@
                                     <h3 class="text-lg font-semibold text-gray-900 line-clamp-1">
                                         {{ $product->name }}
                                     </h3>
-                                    <p class="text-sm text-gray-600 line-clamp-3 flex-grow">
-                                        {{ $product->description }}
-                                    </p>
-                                    <div class="flex justify-between items-center">
+                                    @if ($product->description)
+                                        <p class="text-sm text-gray-600 line-clamp-3 flex-grow">
+                                            {{ $product->description }}
+                                        </p>
+                                    @endif
+                                    <div class="flex justify-between items-center mt-4">
                                         <span class="text-xl text-gray-900">
                                             {{ number_format($product->price, 2) }} ₽
                                         </span>
