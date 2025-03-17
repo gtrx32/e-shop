@@ -17,9 +17,9 @@
                         @csrf
 
                         <div>
-                            <x-primary-button>
+                            <x-ui.button.primary>
                                 {{ __('Отправить письмо снова') }}
-                            </x-primary-button>
+                            </x-ui.button.primary>
                         </div>
                     </form>
 

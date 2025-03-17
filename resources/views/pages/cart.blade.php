@@ -24,9 +24,9 @@
                 @if ($cartItems->isEmpty())
                     <p class="text-xl text-gray-600">Ваша корзина пуста. Добавьте товары в корзину!</p>
                     <div class="mt-8">
-                        <x-secondary-button-link href="{{ route('products.index') }}">
+                        <x-ui.link.secondary href="{{ route('products.index') }}">
                             Вернуться к списку товаров
-                        </x-secondary-button-link>
+                        </x-ui.link.secondary>
                     </div>
                 @else
                     <div class="overflow-x-auto">
@@ -64,19 +64,19 @@
                                                 class="flex justify-center">
                                                 @csrf
                                                 @method('PUT')
-                                                <x-secondary-button type="submit" name="action" value="increase"
-                                                    class="text-sm">+</x-secondary-button>
-                                                <x-secondary-button type="submit" name="action" value="decrease"
-                                                    class="text-sm ml-1">-</x-secondary-button>
+                                                <x-ui.button.secondary type="submit" name="action" value="increase"
+                                                    class="text-sm">+</x-ui.button.secondary>
+                                                <x-ui.button.secondary type="submit" name="action" value="decrease"
+                                                    class="text-sm ml-1">-</x-ui.button.secondary>
                                             </form>
                                         </td>
                                         <td class="px-4 py-2">
                                             <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <x-danger-button type="submit">
+                                                <x-ui.button.danger type="submit">
                                                     Удалить
-                                                </x-danger-button>
+                                                </x-ui.button.danger>
                                             </form>
                                         </td>
                                     </tr>
@@ -96,7 +96,7 @@
                             ₽
                         </div>
                         <a href="">
-                            <x-primary-button class="px-6 py-2">Перейти к оформлению</x-primary-button>
+                            <x-ui.button.primary class="px-6 py-2">Перейти к оформлению</x-ui.button.primary>
                         </a>
                     </div>
                 @endif

@@ -9,10 +9,10 @@
                 Мы не предлагаем широкий ассортимент товаров для вашего удобства. Наслаждайтесь покупками!
             </p>
 
-            <x-primary-button-link href="{{ route('products.index') }}"
+            <x-ui.link.primary href="{{ route('products.index') }}"
                 class="!text-lg py-6 px-8 rounded-lg shadow-lg mx-auto">
                 Перейти в каталог товаров
-            </x-primary-button-link>
+            </x-ui.link.primary>
 
             <div class="text-xl text-gray-500 max-w-xl mx-auto">
                 <p>Если у Вас есть вопросы, не стесняйтесь обращаться к нам!</p>

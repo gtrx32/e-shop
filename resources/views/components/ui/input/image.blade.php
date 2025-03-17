@@ -3,10 +3,10 @@
 <div class="relative">
     <input type="file" id="{{ $id }}" name="{{ $id }}"
         {{ $attributes->merge(['class' => 'hidden']) }} onchange="previewImage(event)">
-    <x-input-label for="{{ $id }}"
+    <x-ui.input.label for="{{ $id }}"
         class="mt-1 inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 cursor-pointer">
         Выберите файл
-    </x-input-label>
+    </x-ui.input.label>
     <div id="image-wrapper" class="{{ $value ? '' : 'hidden' }}">
         <div class="h-48 w-96 mt-4 relative inline-block">
             <img id="preview-image"

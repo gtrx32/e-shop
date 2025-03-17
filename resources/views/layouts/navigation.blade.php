@@ -6,20 +6,20 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('main') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-ui.application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                    <x-ui.link.nav :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Каталог') }}
-                    </x-nav-link>
+                    </x-ui.link.nav>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
+                <x-ui.dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -42,32 +42,32 @@
 
                     <x-slot name="content">
                         @auth
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-ui.dropdown.link :href="route('profile.edit')">
                                 {{ __('Профиль') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('cart.index')">
+                            </x-ui.dropdown.link>
+                            <x-ui.dropdown.link :href="route('cart.index')">
                                 {{ __('Корзина') }}
-                            </x-dropdown-link>
+                            </x-ui.dropdown.link>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-dropdown-link :href="route('logout')"
+                                <x-ui.dropdown.link :href="route('logout')"
                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                     {{ __('Выход') }}
-                                </x-dropdown-link>
+                                </x-ui.dropdown.link>
                             </form>
                         @else
-                            <x-dropdown-link :href="route('login')">
+                            <x-ui.dropdown.link :href="route('login')">
                                 {{ __('Авторизация') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('register')">
+                            </x-ui.dropdown.link>
+                            <x-ui.dropdown.link :href="route('register')">
                                 {{ __('Регистрация') }}
-                            </x-dropdown-link>
+                            </x-ui.dropdown.link>
                         @endauth
                     </x-slot>
-                </x-dropdown>
+                    </x-ui.dropdown.link>
             </div>
 
             <!-- Hamburger -->
@@ -89,9 +89,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+            <x-ui.link.responsive-nav :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('Каталог') }}
-            </x-responsive-nav-link>
+            </x-ui.link.responsive-nav>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -107,30 +107,30 @@
 
             <div class="mt-3 space-y-1">
                 @auth
-                    <x-responsive-nav-link :href="route('profile.edit')">
+                    <x-ui.link.responsive-nav :href="route('profile.edit')">
                         {{ __('Профиль') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('cart.index')">
+                    </x-ui.link.responsive-nav>
+                    <x-ui.link.responsive-nav :href="route('cart.index')">
                         {{ __('Корзина') }}
-                    </x-responsive-nav-link>
+                    </x-ui.link.responsive-nav>
 
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <x-responsive-nav-link :href="route('logout')"
+                        <x-ui.link.responsive-nav :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                             {{ __('Выход') }}
-                        </x-responsive-nav-link>
+                        </x-ui.link.responsive-nav>
                     </form>
                 @else
-                    <x-responsive-nav-link :href="route('login')">
+                    <x-ui.link.responsive-nav :href="route('login')">
                         {{ __('Авторизация') }}
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('register')">
+                    </x-ui.link.responsive-nav>
+                    <x-ui.link.responsive-nav :href="route('register')">
                         {{ __('Регистрация') }}
-                    </x-responsive-nav-link>
+                    </x-ui.link.responsive-nav>
                 @endauth
             </div>
         </div>

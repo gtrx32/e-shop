@@ -7,38 +7,38 @@
 
                     <!-- Name -->
                     <div>
-                        <x-input-label for="name" :value="__('Имя')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                        <x-ui.input.label for="name" :value="__('Имя')" />
+                        <x-ui.input.text id="name" class="block mt-1 w-full" type="text" name="name"
                             :value="old('name')" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-ui.input.errors :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Email Address -->
                     <div class="mt-4">
-                        <x-input-label for="email" :value="__('Электронная почта')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
+                        <x-ui.input.label for="email" :value="__('Электронная почта')" />
+                        <x-ui.input.text id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" required autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-ui.input.errors :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-input-label for="password" :value="__('Пароль')" />
+                        <x-ui.input.label for="password" :value="__('Пароль')" />
 
-                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                            autocomplete="new-password" />
+                        <x-ui.input.text id="password" class="block mt-1 w-full" type="password" name="password"
+                            required autocomplete="new-password" />
 
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <x-ui.input.errors :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-input-label for="password_confirmation" :value="__('Подтверждение пароля')" />
+                        <x-ui.input.label for="password_confirmation" :value="__('Подтверждение пароля')" />
 
-                        <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                        <x-ui.input.text id="password_confirmation" class="block mt-1 w-full" type="password"
                             name="password_confirmation" required autocomplete="new-password" />
 
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        <x-ui.input.errors :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -47,9 +47,9 @@
                             {{ __('Уже есть аккаунт?') }}
                         </a>
 
-                        <x-primary-button class="ms-4">
+                        <x-ui.button.primary class="ms-4">
                             {{ __('Зарегистрироваться') }}
-                        </x-primary-button>
+                        </x-ui.button.primary>
                     </div>
                 </form>
             </div>

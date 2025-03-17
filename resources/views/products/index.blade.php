@@ -23,9 +23,9 @@
                 @endif
                 @can('admin-access')
                     <div class="mb-8">
-                        <x-primary-button-link href="{{ route('products.create') }}">
+                        <x-ui.link.primary href="{{ route('products.create') }}">
                             Добавить товар
-                        </x-primary-button-link>
+                        </x-ui.link.primary>
                     </div>
                 @endcan
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,30 +55,31 @@
                             <div class="p-6 pt-0">
                                 @if ($product->cartData)
                                     <div class="flex items-center space-x-1">
-                                        <x-secondary-button-link href="{{ route('cart.index') }}"
+                                        <x-ui.link.secondary href="{{ route('cart.index') }}"
                                             class="text-sm text-gray-700 whitespace-nowrap">
                                             В корзине: {{ $product->cartData['quantity'] }}
-                                        </x-secondary-button-link>
+                                        </x-ui.link.secondary>
                                         <form action="{{ route('cart.update', $product->cartData['cartItemId']) }}"
                                             method="POST" class="flex items-center">
                                             @csrf
                                             @method('PUT')
-                                            <x-secondary-button type="submit" name="action" value="increase"
-                                                class="text-sm">+</x-secondary-button>
-                                            <x-secondary-button type="submit" name="action" value="decrease"
-                                                class="text-sm ml-1">-</x-secondary-button>
+                                            <x-ui.button.secondary type="submit" name="action" value="increase"
+                                                class="text-sm">+</x-ui.button.secondary>
+                                            <x-ui.button.secondary type="submit" name="action" value="decrease"
+                                                class="text-sm ml-1">-</x-ui.button.secondary>
                                         </form>
                                         <form action="{{ route('cart.remove', $product->cartData['cartItemId']) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <x-danger-button type="submit">Удалить</x-danger-button>
+                                            <x-ui.button.danger type="submit">Удалить</x-ui.button.danger>
                                         </form>
                                     </div>
                                 @else
                                     <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                         @csrf
-                                        <x-primary-button type="submit" class="text-sm">В корзину</x-primary-button>
+                                        <x-ui.button.primary type="submit" class="text-sm">В
+                                            корзину</x-ui.button.primary>
                                     </form>
                                 @endif
                             </div>
@@ -90,16 +91,17 @@
                                     </button>
                                     <div id="product-actions-{{ $product->id }}"
                                         class="product-actions-menu hidden absolute top-8 right-0 bg-white shadow-md p-2 rounded-lg">
-                                        <x-secondary-button-link href="{{ route('products.edit', $product) }}"
+                                        <x-ui.link.secondary href="{{ route('products.edit', $product) }}"
                                             class="text-sm block mb-2 w-full text-center">
                                             Изменить
-                                        </x-secondary-button-link>
+                                        </x-ui.link.secondary>
                                         <form action="{{ route('products.destroy', $product) }}" method="POST"
                                             class="inline w-full">
                                             @csrf
                                             @method('DELETE')
-                                            <x-danger-button type="submit"
-                                                class="text-sm w-full !block text-center">Удалить</x-danger-button>
+                                            <x-ui.button.danger type="submit" class="text-sm w-full !block text-center">
+                                                Удалить
+                                            </x-ui.button.danger>
                                         </form>
                                     </div>
                                 </div>

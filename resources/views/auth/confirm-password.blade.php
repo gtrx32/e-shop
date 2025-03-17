@@ -11,18 +11,18 @@
 
                     <!-- Password -->
                     <div>
-                        <x-input-label for="password" :value="__('Пароль')" />
+                        <x-ui.input.label for="password" :value="__('Пароль')" />
 
-                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                        <x-ui.input.text id="password" class="block mt-1 w-full" type="password" name="password" required
                             autocomplete="current-password" />
 
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <x-ui.input.errors :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="flex justify-end mt-4">
-                        <x-primary-button>
+                        <x-ui.button.primary>
                             {{ __('Подтвердить') }}
-                        </x-primary-button>
+                        </x-ui.button.primary>
                     </div>
                 </form>
             </div>

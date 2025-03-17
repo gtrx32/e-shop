@@ -18,32 +18,32 @@
                     @csrf
                     <div class="space-y-6">
                         <div>
-                            <x-input-label for="name" value="Название" />
-                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                            <x-ui.input.label for="name" value="Название" />
+                            <x-ui.input.text id="name" class="block mt-1 w-full" type="text" name="name"
                                 value="{{ old('name') }}" />
                         </div>
                         <div>
-                            <x-input-label for="description" value="Описание" />
-                            <x-textarea-input id="description" class="block mt-1 w-full" name="description"
+                            <x-ui.input.label for="description" value="Описание" />
+                            <x-ui.input.textarea id="description" class="block mt-1 w-full" name="description"
                                 value="{{ old('description') }}" />
                         </div>
                         <div>
-                            <x-input-label for="price" value="Цена" />
-                            <x-text-input id="price" class="block mt-1 w-full" type="number" step="0.01"
+                            <x-ui.input.label for="price" value="Цена" />
+                            <x-ui.input.text id="price" class="block mt-1 w-full" type="number" step="0.01"
                                 name="price" value="{{ old(key: 'price') }}" />
                         </div>
                         <div>
-                            <x-input-label for="image" value="Изображение" />
-                            <x-image-input id="image" type="file" name="image" accept=".jpg,.jpeg,.png,.webp"
-                                label="Выберите файл" />
+                            <x-ui.input.label for="image" value="Изображение" />
+                            <x-ui.input.image id="image" type="file" name="image"
+                                accept=".jpg,.jpeg,.png,.webp" label="Выберите файл" />
                         </div>
                         <div class="flex justify-end gap-4">
-                            <x-secondary-button-link href="{{ route('products.index') }}">
+                            <x-ui.link.secondary href="{{ route('products.index') }}">
                                 Отмена
-                            </x-secondary-button-link>
-                            <x-primary-button type="submit">
+                            </x-ui.link.secondary>
+                            <x-ui.button.primary type="submit">
                                 Добавить
-                            </x-primary-button>
+                            </x-ui.button.primary>
                         </div>
                     </div>
                 </form>
