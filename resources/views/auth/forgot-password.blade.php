@@ -3,7 +3,7 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white shadow-lg sm:rounded-lg border border-gray-200 p-8">
                 <div class="mb-4 text-sm text-gray-600">
-                    {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+                    {{ __('Забыли пароль? Не проблема. Просто укажите свой адрес электронной почты, и мы отправим вам ссылку для сброса пароля, которая позволит вам выбрать новый.') }}
                 </div>
 
                 <!-- Session Status -->
@@ -14,7 +14,7 @@
 
                     <!-- Email Address -->
                     <div>
-                        <x-input-label for="email" :value="__('Email')" />
+                        <x-input-label for="email" :value="__('Электронная почта')" />
                         <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
                             :value="old('email')" required autofocus />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -22,7 +22,7 @@
 
                     <div class="flex items-center justify-end mt-4">
                         <x-primary-button>
-                            {{ __('Email Password Reset Link') }}
+                            {{ __('Получить ссылку для сброса') }}
                         </x-primary-button>
                     </div>
                 </form>
