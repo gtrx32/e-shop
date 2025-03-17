@@ -37,6 +37,7 @@
                                     <th class="px-4 py-2 text-sm font-semibold text-gray-700">Название</th>
                                     <th class="px-4 py-2 text-sm font-semibold text-gray-700">Цена</th>
                                     <th class="px-4 py-2 text-sm font-semibold text-gray-700">Количество</th>
+                                    <th class="px-4 py-2 text-sm font-semibold text-gray-700">Изменить</th>
                                     <th class="px-4 py-2 text-sm font-semibold text-gray-700">Удалить</th>
                                 </tr>
                             </thead>
@@ -44,14 +45,31 @@
                                 @foreach ($cartItems as $item)
                                     <tr class="border-b">
                                         <td class="px-4 py-2">
-                                            <img src="{{ asset($item->product->image ? 'storage/' . $item->product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
-                                                alt="{{ $item->product->name }}"
-                                                class="w-20 h-20 object-cover rounded-lg mx-auto">
+                                            <a href="{{ route('products.show', $item->product_id) }}">
+                                                <img src="{{ asset($item->product->image ? 'storage/' . $item->product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
+                                                    alt="{{ $item->product->name }}"
+                                                    class="w-20 h-20 object-cover rounded-lg mx-auto">
+                                            </a>
                                         </td>
-                                        <td class="px-4 py-2 text-gray-900">{{ $item->product->name }}</td>
+                                        <td class="px-4 py-2 text-gray-900">
+                                            <a href="{{ route('products.show', $item->product_id) }}">
+                                                {{ $item->product->name }}
+                                            </a>
+                                        </td>
                                         <td class="px-4 py-2 text-gray-700 whitespace-nowrap">
                                             {{ number_format($item->product->price, 2) }} ₽</td>
                                         <td class="px-4 py-2 text-gray-700">{{ $item->quantity }}</td>
+                                        <td class="px-4 py-2">
+                                            <form action="{{ route('cart.update', $item->product_id) }}" method="POST"
+                                                class="flex justify-center space-x-2 w-full">
+                                                @csrf
+                                                @method('PUT')
+                                                <x-secondary-button type="submit" name="action" value="increase"
+                                                    class="text-sm">+</x-secondary-button>
+                                                <x-secondary-button type="submit" name="action" value="decrease"
+                                                    class="text-sm">-</x-secondary-button>
+                                            </form>
+                                        </td>
                                         <td class="px-4 py-2">
                                             <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                                 @csrf

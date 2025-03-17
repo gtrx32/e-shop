@@ -32,12 +32,30 @@
                             <div class="text-2xl font-semibold text-gray-900">
                                 {{ number_format($product->price, 2) }} ₽
                             </div>
-                            <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                @csrf
-                                <x-primary-button type="submit" class="px-6 py-2 text-base">
-                                    В корзину
-                                </x-primary-button>
-                            </form>
+                            @if (!empty($cartQuantity))
+                                <div class="flex items-center space-x-2">
+                                    <x-secondary-button-link href="{{ route('cart.index') }}"
+                                        class="text-sm text-gray-700">
+                                        В корзине: {{ $cartQuantity }}
+                                    </x-secondary-button-link>
+                                    <form action="{{ route('cart.update', $product->id) }}" method="POST"
+                                        class="flex items-center space-x-2">
+                                        @csrf
+                                        @method('PUT')
+                                        <x-secondary-button type="submit" name="action" value="increase"
+                                            class="text-sm">+</x-secondary-button>
+                                        <x-secondary-button type="submit" name="action" value="decrease"
+                                            class="text-sm">-</x-secondary-button>
+                                    </form>
+                                </div>
+                            @else
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                    @csrf
+                                    <x-primary-button type="submit" class="text-sm">
+                                        В корзину
+                                    </x-primary-button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

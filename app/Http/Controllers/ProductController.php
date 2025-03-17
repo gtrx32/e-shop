@@ -17,7 +17,11 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('products.index', compact('products'));
+        $cartQuantities = auth()->check()
+            ? auth()->user()->cartItems()->pluck('quantity', 'product_id')
+            : collect();
+
+        return view('products.index', compact('products', 'cartQuantities'));
     }
 
     /**
@@ -45,7 +49,12 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        return view('products.show', compact('product'));
+        $cartQuantity = auth()->check()
+            ? auth()->user()->cartItems()->where('product_id', $product->id)->first()?->quantity ?? 0
+            : 0;
+
+
+        return view('products.show', compact('product', 'cartQuantity'));
     }
 
     /**
