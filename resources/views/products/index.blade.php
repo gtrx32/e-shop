@@ -55,20 +55,28 @@
                                 </div>
                             </a>
                             <div class="p-6 pt-0">
-                                @if (!empty($cartQuantities[$product->id]))
-                                    <div class="flex items-center space-x-2">
+                                @if ($product->cartData)
+                                    <div class="flex items-center space-x-1">
                                         <x-secondary-button-link href="{{ route('cart.index') }}"
-                                            class="text-sm text-gray-700">
-                                            В корзине: {{ $cartQuantities[$product->id] }}
+                                            class="text-sm text-gray-700 whitespace-nowrap">
+                                            В корзине: {{ $product->cartData['quantity'] }}
                                         </x-secondary-button-link>
-                                        <form action="{{ route('cart.update', $product->id) }}" method="POST"
-                                            class="flex items-center space-x-2">
+                                        <form action="{{ route('cart.update', $product->cartData['cartItemId']) }}"
+                                            method="POST" class="flex items-center">
                                             @csrf
                                             @method('PUT')
                                             <x-secondary-button type="submit" name="action" value="increase"
                                                 class="text-sm">+</x-secondary-button>
                                             <x-secondary-button type="submit" name="action" value="decrease"
-                                                class="text-sm">-</x-secondary-button>
+                                                class="text-sm ml-1">-</x-secondary-button>
+                                        </form>
+                                        <form action="{{ route('cart.remove', $product->cartData['cartItemId']) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-danger-button type="submit">
+                                                Удалить
+                                            </x-danger-button>
                                         </form>
                                     </div>
                                 @else

@@ -60,14 +60,14 @@
                                             {{ number_format($item->product->price, 2) }} ₽</td>
                                         <td class="px-4 py-2 text-gray-700">{{ $item->quantity }}</td>
                                         <td class="px-4 py-2">
-                                            <form action="{{ route('cart.update', $item->product_id) }}" method="POST"
-                                                class="flex justify-center space-x-2 w-full">
+                                            <form action="{{ route('cart.update', $item->id) }}" method="POST"
+                                                class="flex justify-center">
                                                 @csrf
                                                 @method('PUT')
                                                 <x-secondary-button type="submit" name="action" value="increase"
                                                     class="text-sm">+</x-secondary-button>
                                                 <x-secondary-button type="submit" name="action" value="decrease"
-                                                    class="text-sm">-</x-secondary-button>
+                                                    class="text-sm ml-1">-</x-secondary-button>
                                             </form>
                                         </td>
                                         <td class="px-4 py-2">

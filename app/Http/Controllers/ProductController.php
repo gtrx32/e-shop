@@ -13,15 +13,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
-        $products = Product::all();
+        $products = Product::with('cartItem')->get();
 
-        $cartQuantities = auth()->check()
-            ? auth()->user()->cartItems()->pluck('quantity', 'product_id')
-            : collect();
-
-        return view('products.index', compact('products', 'cartQuantities'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -49,12 +45,9 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        $cartQuantity = auth()->check()
-            ? auth()->user()->cartItems()->where('product_id', $product->id)->first()?->quantity ?? 0
-            : 0;
+        $product->load('cartItem');
 
-
-        return view('products.show', compact('product', 'cartQuantity'));
+        return view('products.show', compact('product'));
     }
 
     /**

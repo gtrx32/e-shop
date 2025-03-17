@@ -22,9 +22,9 @@
                     </div>
                 @endif
                 <div class="flex flex-col md:flex-row gap-6">
-                    <div class="w-full md:w-1/3">
+                    <div class="w-full md:w-2/4">
                         <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
-                            alt="{{ $product->name }}" class="w-full h-64 object-cover rounded-lg shadow-md">
+                            alt="{{ $product->name }}" class="w-full h-80 object-cover rounded-lg shadow-md">
                     </div>
                     <div class="flex-1 flex flex-col gap-8">
                         <h1 class="text-3xl font-bold text-gray-900">{{ $product->name }}</h1>
@@ -32,20 +32,28 @@
                             <div class="text-2xl font-semibold text-gray-900">
                                 {{ number_format($product->price, 2) }} ₽
                             </div>
-                            @if (!empty($cartQuantity))
-                                <div class="flex items-center space-x-2">
+                            @if ($product->cartItem)
+                                <div class="flex items-center space-x-1">
                                     <x-secondary-button-link href="{{ route('cart.index') }}"
-                                        class="text-sm text-gray-700">
-                                        В корзине: {{ $cartQuantity }}
+                                        class="text-sm text-gray-700 whitespace-nowrap">
+                                        В корзине: {{ $product->cartItem->quantity }}
                                     </x-secondary-button-link>
-                                    <form action="{{ route('cart.update', $product->id) }}" method="POST"
-                                        class="flex items-center space-x-2">
+                                    <form action="{{ route('cart.update', $product->cartItem->id) }}" method="POST"
+                                        class="flex items-center">
                                         @csrf
                                         @method('PUT')
                                         <x-secondary-button type="submit" name="action" value="increase"
                                             class="text-sm">+</x-secondary-button>
                                         <x-secondary-button type="submit" name="action" value="decrease"
-                                            class="text-sm">-</x-secondary-button>
+                                            class="text-sm ml-1">-</x-secondary-button>
+                                    </form>
+                                    <form action="{{ route('cart.remove', $product->cartData['cartItemId']) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <x-danger-button type="submit">
+                                            Удалить
+                                        </x-danger-button>
                                     </form>
                                 </div>
                             @else

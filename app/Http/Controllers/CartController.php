@@ -27,12 +27,8 @@ class CartController extends Controller
         return back()->with('success', 'Товар добавлен в корзину.');
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, CartItem $cartItem)
     {
-        $user = auth()->user();
-
-        $cartItem = $user->cartItems()->where('product_id', $product->id)->first();
-
         if ($request->action == 'increase') {
             $cartItem->increment('quantity');
         } elseif ($request->action == 'decrease') {

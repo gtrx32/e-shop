@@ -29,7 +29,7 @@ Route::get('/products/{product}', [ProductController::class, 'show'])->name('pro
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::put('/cart/update/{product}', [CartController::class, 'update'])->name('cart.update');
+    Route::put('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
 });
 
