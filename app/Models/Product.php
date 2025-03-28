@@ -12,4 +12,9 @@ class Product extends Model
         'image',
         'price'
     ];
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }
