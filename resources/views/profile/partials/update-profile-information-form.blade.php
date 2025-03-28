@@ -25,6 +25,18 @@
         </div>
 
         <div>
+            <x-ui.input.label for="phone" :value="__('Телефон')" />
+            <x-ui.input.text id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)" />
+            <x-ui.input.errors class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+
+        <div>
+            <x-ui.input.label for="address" :value="__('Адрес')" />
+            <x-ui.input.text id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" />
+            <x-ui.input.errors class="mt-2" :messages="$errors->get('address')" />
+        </div>
+
+        <div>
             <x-ui.input.label for="email" :value="__('Электронная почта')" />
             <x-ui.input.text id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
                 required autocomplete="username" />
