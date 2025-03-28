@@ -15,9 +15,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('userCartItems')->get();
+        $products = Product::all();
 
-        return view('products.index', compact('products'));
+        $cartItems = auth()->user()->cart->cartItems;
+
+        return view('products.index', compact('products', 'cartItems'));
     }
 
     /**
@@ -45,9 +47,9 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        $product->load('userCartItems');
+        $cartItem = auth()->user()->cart->cartItems()->where('product_id', $product->id)->first();
 
-        return view('products.show', compact('product'));
+        return view('products.show', compact('product', 'cartItem'));
     }
 
     /**
