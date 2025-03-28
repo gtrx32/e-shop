@@ -17,7 +17,9 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        $cartItems = auth()->user()->cart->cartItems;
+        $cart = auth()->user()->cart;
+
+        $cartItems = $cart ? $cart->cartItems->keyBy('product_id') : [];
 
         return view('products.index', compact('products', 'cartItems'));
     }

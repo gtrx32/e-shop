@@ -8,14 +8,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-8 bg-white shadow sm:rounded-lg">
                 <x-ui.feedback.result />
-                @can('admin-access')
-                    @include('products.partials.admin.index-add-product')
-                @endcan
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach ($products as $product)
-                        @include('products.partials.index-product')
-                    @endforeach
-                </div>
+                @include('products.partials.index.admin-add-product')
+                @include('products.partials.index.product-list')
             </div>
         </div>
     </div>
