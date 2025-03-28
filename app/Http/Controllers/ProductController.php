@@ -17,9 +17,10 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        $cart = auth()->user()->cart;
+        $user = auth()->user();
+        $cart = $user ? $user->cart : null;
 
-        $cartItems = $cart ? $cart->cartItems->keyBy('product_id') : [];
+        $cartItems = $cart ? $cart->cartItems->keyBy('product_id') : collect();
 
         return view('products.index', compact('products', 'cartItems'));
     }
@@ -49,7 +50,9 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        $cartItem = auth()->user()->cart->cartItems()->where('product_id', $product->id)->first();
+        $user = auth()->user();
+
+        $cartItem = $user ? $user->cart->cartItems()->where('product_id', $product->id)->first() : null;
 
         return view('products.show', compact('product', 'cartItem'));
     }
