@@ -7,13 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-8 bg-white shadow sm:rounded-lg">
-                @if ($errors->any())
-                    <div class="p-4 mb-4 text-red-800 bg-red-100 rounded-lg">
-                        @foreach ($errors->all() as $message)
-                            <p>{{ $message }}</p>
-                        @endforeach
-                    </div>
-                @endif
+                <x-ui.feedback.errors />
                 <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="space-y-6">
