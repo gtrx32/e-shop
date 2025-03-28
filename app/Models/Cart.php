@@ -21,7 +21,7 @@ class Cart extends Model
     public function updatePrice()
     {
         $price = $this->cartItems->sum(function ($cartItem) {
-            return $cartItem->price * $cartItem->quantity;
+            return $cartItem->product->price * $cartItem->quantity;
         });
 
         $this->price = $price;
