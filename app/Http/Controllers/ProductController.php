@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('cartItem')->get();
+        $products = Product::with('userCartItems')->get();
 
         return view('products.index', compact('products'));
     }
@@ -45,7 +45,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        $product->load('cartItem');
+        $product->load('userCartItems');
 
         return view('products.show', compact('product'));
     }

@@ -18,6 +18,11 @@ class Product extends Model
         return $this->hasMany(CartItem::class);
     }
 
+    public function userCartItems()
+    {
+        return $this->hasMany(CartItem::class)->where('cart_id', auth()->user()->cart->id);
+    }
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
