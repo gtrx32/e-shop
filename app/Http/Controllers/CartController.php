@@ -15,7 +15,7 @@ class CartController extends Controller
         return view('cart.index', compact('cart'));
     }
 
-    public function addItem(Request $request, Product $product)
+    public function add(Request $request, Product $product)
     {
         $cart = auth()->user()->cart()->firstOrCreate([]);
 
@@ -32,7 +32,7 @@ class CartController extends Controller
         return back()->with('success', 'Товар добавлен в корзину.');
     }
 
-    public function updateItem(Request $request, CartItem $cartItem)
+    public function update(Request $request, CartItem $cartItem)
     {
         $cart = $cartItem->cart;
 
@@ -47,7 +47,7 @@ class CartController extends Controller
         return back()->with('success', 'Количество товара обновлено.');
     }
 
-    public function removeItem(CartItem $cartItem)
+    public function remove(CartItem $cartItem)
     {
         $cart = $cartItem->cart;
 
