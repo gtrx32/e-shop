@@ -18,6 +18,7 @@ class ProductController extends Controller
         $products = Product::all();
 
         $user = auth()->user();
+
         $cart = $user ? $user->cart : null;
 
         $cartItems = $cart ? $cart->cartItems->keyBy('product_id') : collect();
@@ -52,7 +53,9 @@ class ProductController extends Controller
     {
         $user = auth()->user();
 
-        $cartItem = $user ? $user->cart->cartItems()->where('product_id', $product->id)->first() : null;
+        $cart = $user ? $user->cart : null;
+
+        $cartItem = $cart ? $cart->cartItems()->where('product_id', $product->id)->first() : null;
 
         return view('products.show', compact('product', 'cartItem'));
     }

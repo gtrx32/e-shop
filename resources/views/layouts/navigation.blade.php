@@ -48,6 +48,9 @@
                             <x-ui.dropdown.link :href="route('cart.index')">
                                 {{ __('Корзина') }}
                             </x-ui.dropdown.link>
+                            <x-ui.dropdown.link :href="route('orders.index')">
+                                {{ __('Заказы') }}
+                            </x-ui.dropdown.link>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -112,6 +115,9 @@
                     </x-ui.link.responsive-nav>
                     <x-ui.link.responsive-nav :href="route('cart.index')">
                         {{ __('Корзина') }}
+                    </x-ui.link.responsive-nav>
+                    <x-ui.link.responsive-nav :href="route('orders.index')">
+                        {{ __('Заказы') }}
                     </x-ui.link.responsive-nav>
 
                     <!-- Authentication -->
