@@ -1,6 +1,7 @@
 <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="p-8 bg-white shadow sm:rounded-lg space-y-6">
+        <h3 class="text-xl font-semibold mb-4">Данные заказа</h3>
         <div>
             <x-ui.input.label for="phone" value="Номер телефона" />
             <x-ui.input.text id="phone" name="phone" type="tel" class="w-full"
