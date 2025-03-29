@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
+use App\Enums\PaymentMethod;
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -15,7 +17,11 @@ class OrderController extends Controller
 
     public function create()
     {
+        $cart = auth()->user()->cart()->with('cartItems.product')->first();
+        $payment_methods = PaymentMethod::values();
+        $statuses = OrderStatus::values();
 
+        return view('orders.create', compact('cart', 'payment_methods', 'statuses'));
     }
 
     public function store()

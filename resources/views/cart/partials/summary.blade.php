@@ -2,5 +2,7 @@
     <div class="text-xl font-semibold text-gray-900">
         Итог: {{ $cart->price }} ₽
     </div>
-    <x-ui.button.primary class="px-6 py-2">Перейти к оформлению</x-ui.button.primary>
+    <x-ui.link.primary href="{{ route('orders.create') }}">
+        Перейти к оформлению
+        </x-ui.link.secondary>
 </div>
