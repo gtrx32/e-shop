@@ -6,6 +6,7 @@ use App\Enums\OrderStatus;
 use App\Enums\PaymentMethod;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderController extends Controller
 {
@@ -40,6 +41,17 @@ class OrderController extends Controller
             'price' => $user->cart->price,
             'payment_method' => $data['payment_method'],
         ]);
+
+        $cartItems = auth()->user()->cart->cartItems;
+
+        foreach ($cartItems as $cartItem) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id,
+                'quantity' => $cartItem->quantity,
+                'price' => $cartItem->product->price,
+            ]);
+        }
 
         $user->cart->delete();
 
