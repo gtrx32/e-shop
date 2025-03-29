@@ -8,11 +8,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-8 bg-white shadow sm:rounded-lg">
                 <x-ui.feedback.result />
-                @if ($cart->cartItems->isEmpty())
-                    @include('cart.partials.empty-cart-message')
-                @else
+                @if ($cart && !$cart->cartItems->isEmpty())
                     @include('cart.partials.table')
                     @include('cart.partials.summary')
+                @else
+                    @include('cart.partials.empty-cart-message')
                 @endif
             </div>
         </div>
