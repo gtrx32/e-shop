@@ -14,6 +14,9 @@
                     <x-ui.link.nav :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Каталог') }}
                     </x-ui.link.nav>
+                    <x-ui.link.nav :href="route('excel.index')" :active="request()->routeIs('excel.index') || request()->routeIs('excel.upload')">
+                        {{ __('Excel') }}
+                    </x-ui.link.nav>
                 </div>
             </div>
 
@@ -94,6 +97,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-ui.link.responsive-nav :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('Каталог') }}
+            </x-ui.link.responsive-nav>
+            <x-ui.link.responsive-nav :href="route('excel.index')" :active="request()->routeIs('excel.index') || request()->routeIs('excel.upload')">
+                {{ __('Excel') }}
             </x-ui.link.responsive-nav>
         </div>
 

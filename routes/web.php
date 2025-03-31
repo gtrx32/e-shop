@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -43,5 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
+
+Route::get('/excel', [ExcelController::class, 'index'])->name('excel.index');
+Route::post('/excel', [ExcelController::class, 'upload'])->name('excel.upload');
 
 require __DIR__ . '/auth.php';
