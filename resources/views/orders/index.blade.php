@@ -38,6 +38,7 @@
                     </table>
                 </div>
             </div>
+            {{ $orders->links('vendor.pagination.tailwind') }}
         </div>
     </div>
 </x-app-layout>

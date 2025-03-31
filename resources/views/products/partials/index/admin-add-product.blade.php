@@ -1,5 +1,5 @@
 @can('admin-access')
-    <div class="mb-8">
+    <div>
         <x-ui.link.primary href="{{ route('products.create') }}">
             Добавить товар
         </x-ui.link.primary>

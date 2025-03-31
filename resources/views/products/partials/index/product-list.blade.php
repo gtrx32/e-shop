@@ -2,7 +2,7 @@
     @foreach ($products as $product)
         <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full relative">
             <a href="{{ route('products.show', $product->id) }}" class="relative group flex-grow flex flex-col h-full">
-                <div class="relative h-80 w-full">
+                <div class="relative h-64 w-full">
                     <img src="{{ asset($product->image ? 'storage/' . $product->image : 'https://imgholder.ru/600x300/8493a8/adb9ca&text=IMAGE&font=kelson') }}"
                         alt="{{ $product->name }}"
                         class="w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300">

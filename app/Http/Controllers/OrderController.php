@@ -15,8 +15,8 @@ class OrderController extends Controller
         $user = auth()->user();
 
         $orders = $user->role === 'admin'
-            ? Order::with('orderItems.product')->get()
-            : $user->orders()->with('orderItems.product')->get();
+            ? Order::with('orderItems.product')->paginate(1)
+            : $user->orders()->with('orderItems.product')->paginate(1);
 
         return view('orders.index', compact('orders'));
     }
