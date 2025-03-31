@@ -65,7 +65,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        if ($order->user_id !== auth()->user()->id) {
+        if ($order->user_id !== auth()->user()->id && auth()->user()->role !== 'admin') {
             abort(403, 'Вы не можете просматривать этот заказ.');
         }
 
