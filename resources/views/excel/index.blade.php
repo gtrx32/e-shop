@@ -41,12 +41,13 @@
                         @foreach ($data as $index => $sheet)
                             <div class="sheet-content" id="sheet-{{ $index }}"
                                 style="display: {{ $index === 0 ? 'block' : 'none' }};">
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full table-auto">
+                                <div class="overflow-auto max-h-[700px]">
+                                    <table class="min-w-full table-auto border">
                                         <thead>
                                             <tr class="border-b">
                                                 @foreach ($sheet[1] as $header)
-                                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">
+                                                    <th
+                                                        class="px-4 py-2 text-left text-sm font-medium text-gray-700 border-t border-b border-l">
                                                         {{ $header }}
                                                     </th>
                                                 @endforeach
@@ -56,7 +57,8 @@
                                             @foreach (array_slice($sheet, 1) as $row)
                                                 <tr class="border-b">
                                                     @foreach ($row as $cell)
-                                                        <td class="px-4 py-2 text-sm text-gray-700">
+                                                        <td
+                                                            class="px-4 py-2 text-sm text-gray-700 border-t border-b border-l">
                                                             {{ $cell }}
                                                         </td>
                                                     @endforeach
@@ -64,6 +66,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
                                 </div>
                             </div>
                         @endforeach
